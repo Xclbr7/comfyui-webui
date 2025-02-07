@@ -7,7 +7,7 @@ function App() {
   const [prompt, setPrompt] = useState('');
   const [generatedImage, setGeneratedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [steps, setSteps] = useState(25);
+  const [steps, setSteps] = useState(20);
 
   useEffect(() => {
     const wsConnection = setupWebSocket((message) => {
