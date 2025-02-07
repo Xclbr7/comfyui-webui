@@ -50,7 +50,7 @@ function App() {
       "1": {
         "inputs": {
           "add_noise": "enable",
-          "noise_seed": 533764322861538,
+          "noise_seed": 614966368635923,
           "steps": steps,
           "cfg": 1,
           "sampler_name": "euler",
@@ -71,7 +71,7 @@ function App() {
             0
           ],
           "latent_image": [
-            "6",
+            "5",
             0
           ]
         },
@@ -82,45 +82,40 @@ function App() {
       },
       "2": {
         "inputs": {
-          "unet_name": "flux1-dev-Q4_K_S.gguf",
-          "dequant_dtype": "default",
-          "patch_dtype": "default",
-          "patch_on_device": true
+          "unet_name": "flux1-dev-Q4_K_S.gguf"
         },
-        "class_type": "UnetLoaderGGUFAdvanced",
+        "class_type": "UnetLoaderGGUF",
         "_meta": {
-          "title": "Unet Loader (GGUF/Advanced)"
+          "title": "Unet Loader (GGUF)"
         }
       },
       "3": {
         "inputs": {
           "text": prompt,
-          "speak_and_recognation": true,
           "clip": [
-            "10",
+            "8",
             0
           ]
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "POS"
+          "title": "POSITIVE"
         }
       },
       "4": {
         "inputs": {
           "text": "",
-          "speak_and_recognation": true,
           "clip": [
-            "10",
+            "8",
             0
           ]
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "NEG"
+          "title": "NEGATIVE"
         }
       },
-      "6": {
+      "5": {
         "inputs": {
           "width": 1024,
           "height": 1024,
@@ -131,14 +126,14 @@ function App() {
           "title": "Empty Latent Image"
         }
       },
-      "7": {
+      "6": {
         "inputs": {
           "samples": [
             "1",
             0
           ],
           "vae": [
-            "8",
+            "10",
             0
           ]
         },
@@ -147,20 +142,11 @@ function App() {
           "title": "VAE Decode"
         }
       },
-      "8": {
-        "inputs": {
-          "vae_name": "ae.safetensors"
-        },
-        "class_type": "VAELoader",
-        "_meta": {
-          "title": "Load VAE"
-        }
-      },
-      "9": {
+      "7": {
         "inputs": {
           "filename_prefix": "ComfyUI",
           "images": [
-            "7",
+            "6",
             0
           ]
         },
@@ -169,15 +155,24 @@ function App() {
           "title": "Save Image"
         }
       },
-      "10": {
+      "8": {
         "inputs": {
-          "clip_name1": "ViT-L-14-GmP-ft.safetensors",
+          "clip_name1": "clip_l.safetensors",
           "clip_name2": "t5-v1_1-xxl-encoder-Q6_K.gguf",
           "type": "flux"
         },
         "class_type": "DualCLIPLoaderGGUF",
         "_meta": {
           "title": "DualCLIPLoader (GGUF)"
+        }
+      },
+      "10": {
+        "inputs": {
+          "vae_name": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "Load VAE"
         }
       }
     };
@@ -220,11 +215,11 @@ function App() {
         )}
 
         {generatedImage && (
-          <div className="mt-8 max-w-2xl">
+          <div className="mt-8 max-w-2xl h-[600px] w-auto">
             <img 
               src={generatedImage} 
               alt="Generated artwork"
-              className="rounded-lg shadow-lg w-full"
+              className="rounded-lg shadow-lg h-full w-auto object-contain"
             />
           </div>
         )}
