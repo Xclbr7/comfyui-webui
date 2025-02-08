@@ -199,6 +199,22 @@ function App() {
           />
           <div>Steps: {steps}</div>
           <input className='slider text-white bg-gray-800 w-[600px] h-12 rounded-full p-2 px-4' type="range" min="5" max="50" value={steps} onChange={(e) => setSteps(e.target.value)} />
+          {/* <div className='flex flex-row gap-4 items-center justify-center w-full'>
+          <input
+            value={"width"}
+            onChange={(e) => setPrompt(e.target.value)}
+            className='text-white bg-gray-800 w-[200px] h-12 rounded-full p-2 px-4'
+            type="text"
+            placeholder="width"
+          />
+          <input
+            value={"height"}
+            onChange={(e) => setPrompt(e.target.value)}
+            className='text-white bg-gray-800 w-[200px] h-12 rounded-full p-2 px-4'
+            type="text"
+            placeholder="height"
+          />
+          </div> */}
           <button 
             className='text-white bg-green-500 w-64 h-12 rounded-full p-2 disabled:opacity-50'
             disabled={isLoading}
