@@ -8,6 +8,8 @@ function App() {
   const [generatedImage, setGeneratedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [steps, setSteps] = useState(20);
+  const [width, setWidth] = useState(1024);
+  const [height, setHeight] = useState(1024);
 
   useEffect(() => {
     const wsConnection = setupWebSocket((message) => {
@@ -117,8 +119,8 @@ function App() {
       },
       "5": {
         "inputs": {
-          "width": 1024,
-          "height": 1024,
+          "width": width,
+          "height": height,
           "batch_size": 1
         },
         "class_type": "EmptyLatentImage",
@@ -199,22 +201,22 @@ function App() {
           />
           <div>Steps: {steps}</div>
           <input className='slider text-white bg-gray-800 w-[600px] h-12 rounded-full p-2 px-4' type="range" min="5" max="50" value={steps} onChange={(e) => setSteps(e.target.value)} />
-          {/* <div className='flex flex-row gap-4 items-center justify-center w-full'>
+          <div className='flex flex-row gap-4 items-center justify-center w-full'>
           <input
-            value={"width"}
-            onChange={(e) => setPrompt(e.target.value)}
+            value={width}
+            onChange={(e) => setWidth(e.target.value)}
             className='text-white bg-gray-800 w-[200px] h-12 rounded-full p-2 px-4'
             type="text"
             placeholder="width"
           />
           <input
-            value={"height"}
-            onChange={(e) => setPrompt(e.target.value)}
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
             className='text-white bg-gray-800 w-[200px] h-12 rounded-full p-2 px-4'
             type="text"
             placeholder="height"
           />
-          </div> */}
+          </div>
           <button 
             className='text-white bg-green-500 w-64 h-12 rounded-full p-2 disabled:opacity-50'
             disabled={isLoading}
